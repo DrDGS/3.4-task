@@ -327,8 +327,8 @@ Transform:
   m_GameObject: {fileID: 587338361}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.13900006, z: 0.668}
-  m_LocalScale: {x: 0.14052184, y: 0.15147, z: 0.6332561}
+  m_LocalPosition: {x: 0, y: 0.13900006, z: 0.575}
+  m_LocalScale: {x: 0.14052184, y: 0.15147, z: 0.40080047}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 872399988}
@@ -443,6 +443,7 @@ GameObject:
   - component: {fileID: 872399991}
   - component: {fileID: 872399990}
   - component: {fileID: 872399992}
+  - component: {fileID: 872399993}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -537,6 +538,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 587338365}
+  - {fileID: 1432258405}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &872399989
@@ -551,6 +553,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf9a8d2416916f4469e3d8d6e0dd8cc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  baseWeaponPrefab: {fileID: 7200171471358328803, guid: a7644a3cf2daa244b9ba5b7ba1f75cbb, type: 3}
+  hand: {fileID: 1432258405}
 --- !u!114 &872399990
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -603,6 +607,18 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &872399993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 872399984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f58b8620391a982469cf0445d57f9af0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -711,6 +727,37 @@ MonoBehaviour:
   player: {fileID: 872399989}
   followCameraOffset: {x: -5, y: 4, z: -5}
   rotationOffset: {x: 0, y: 0, z: 0}
+--- !u!1 &1432258404
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1432258405}
+  m_Layer: 0
+  m_Name: Hand
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1432258405
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1432258404}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.75, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 872399988}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
