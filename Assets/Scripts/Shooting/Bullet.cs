@@ -7,16 +7,19 @@ namespace Assets.Scripts.Shooting
     public class Bullet : MonoBehaviour
     {
 
+        public float damage { get; private set; }
+
         private Vector3 direction;
         private float flySpeed;
         private float maxFlyDistance;
         private float currnetFlyDistnace;
 
-        public void Initialize(Vector3 direction, float maxFlyDistance, float flySpeed)
+        public void Initialize(Vector3 direction, float maxFlyDistance, float flySpeed, float damage)
         {
             this.direction = direction;
             this.flySpeed = flySpeed;
             this.maxFlyDistance = maxFlyDistance;
+            this.damage = damage;
         }
 
         protected void Update()

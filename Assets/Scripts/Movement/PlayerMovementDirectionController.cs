@@ -24,7 +24,7 @@ namespace Assets.Scripts.Movement
             //multiply Vector3 by it and thus ROTATE Vector3 by 45 degrees around Y. Really cool and kinda confusing
             direction.y = 0; //cannot fly! sadge
 
-            MovementDirection = direction;
+            MovementDirection = direction.normalized;
         }
     }
 }

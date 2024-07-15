@@ -9,6 +9,7 @@ namespace Assets.Scripts.Shooting
         [field: SerializeField] public Bullet bulletPrefab { get; private set; }
         [field: SerializeField] public float shootRadius { get; private set; } = 5f;
         [field: SerializeField] public float shootFrequencySec { get; private set; } = 1f;
+        [SerializeField] private float damage = 1f;
         [SerializeField] private float bulletMaxFlyDistance = 10f;
         [SerializeField] private float bulletFlySpeed = 10f;
         [SerializeField] private Transform bulletSpawnPosition;
@@ -21,7 +22,7 @@ namespace Assets.Scripts.Shooting
             target.y = 0;
             target.Normalize();
 
-            bullet.Initialize(target, bulletMaxFlyDistance, bulletFlySpeed);
+            bullet.Initialize(target, bulletMaxFlyDistance, bulletFlySpeed, damage);
         }
     }
 }

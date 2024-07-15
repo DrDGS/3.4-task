@@ -10,8 +10,10 @@ namespace Assets.Scripts.Movement
         private static readonly float SqrEpsilon = Mathf.Epsilon * Mathf.Epsilon; //why readonly why not just const?
 
         [SerializeField] private float speed = 1f;
+        [SerializeField] private float sprintMultiplyer = 2f;
         [SerializeField] private float maxRadiansDelta = 10f;
-        public Vector3 direction { get; set; } //whyyyy you need getter-setter for public field??? uh?
+        public Vector3 movementDirection { get; set; } //whyyyy you need getter-setter for public field??? uh?
+        public Vector3 lookDirection { get; set; }
         private CharacterController characterController;
 
         protected void Awake()
@@ -23,26 +25,26 @@ namespace Assets.Scripts.Movement
         {
             Translate();
 
-            if (maxRadiansDelta > 0f && direction!= Vector3.zero)
+            if (maxRadiansDelta > 0f && lookDirection != Vector3.zero)
                 Rotate();
         }
 
         private void Translate()
         {
-            var delta = direction * speed * Time.deltaTime;
+            var delta = movementDirection * speed * Time.deltaTime * (Input.GetKey(KeyCode.Space) ? sprintMultiplyer : 1f);
             characterController.Move(delta);
         }
 
         private void Rotate()
         {
             var currentLookDirection = transform.rotation * Vector3.forward;
-            float sqrMagnitude = (currentLookDirection - direction).sqrMagnitude;
+            float sqrMagnitude = (currentLookDirection - lookDirection).sqrMagnitude;
 
             if (sqrMagnitude > SqrEpsilon)
             {
                 var newRotation = Quaternion.Slerp(
                     transform.rotation, 
-                    Quaternion.LookRotation(direction, Vector3.up),
+                    Quaternion.LookRotation(lookDirection, Vector3.up),
                     maxRadiansDelta * Time.deltaTime); //mkey understandable
 
                 transform.rotation = newRotation;
