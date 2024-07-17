@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Rendering;
 
 namespace Assets.Scripts.Shooting
 {
@@ -29,6 +30,9 @@ namespace Assets.Scripts.Shooting
 
         public void SetWeapon(Weapon weaponPrefab, Transform hand)
         {
+            if (weapon != null)
+                Destroy(weapon.gameObject);
+
             weapon = Instantiate(weaponPrefab, hand);
             weapon.transform.localPosition = Vector3.zero;
             weapon.transform.localRotation = Quaternion.identity;
