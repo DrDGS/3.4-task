@@ -34,8 +34,11 @@ namespace Assets.Scripts
             var lookDirection = direction;
             if (shootingController.hasTarget)
                 lookDirection = (shootingController.targetPosition - transform.position).normalized;
+            var sprinting = movementDirectionSource.sprinting;
+
             characterMovementController.movementDirection = direction;
             characterMovementController.lookDirection = lookDirection;
+            characterMovementController.sprinting = sprinting;
 
             if (health <= 0f)
                 Destroy(gameObject);

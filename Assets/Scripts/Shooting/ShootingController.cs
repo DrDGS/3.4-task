@@ -12,7 +12,6 @@ namespace Assets.Scripts.Shooting
         private Collider[] colliders = new Collider[2];
         private float nextShotTimerSec;
         private GameObject target;
-        [SerializeField] private bool isEnemy = true;
 
         protected void Update()
         {
@@ -41,7 +40,7 @@ namespace Assets.Scripts.Shooting
 
             var position = weapon.transform.position;
             var radius = weapon.shootRadius;
-            var mask = isEnemy ? LayerUtils.PlayerMask : LayerUtils.EnemyMask;
+            var mask = LayerUtils.PlayerMask + LayerUtils.EnemyMask;
 
             var size = Physics.OverlapSphereNonAlloc(position, radius, colliders, mask);
 

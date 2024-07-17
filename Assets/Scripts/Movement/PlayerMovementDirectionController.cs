@@ -7,6 +7,7 @@ namespace Assets.Scripts.Movement
     {
         private UnityEngine.Camera camera;
         public Vector3 MovementDirection { get; private set; } //what is the difference between public field with private setter and private field also with private setter?
+        public bool sprinting { get; private set; }
 
         protected void Awake()
         {
@@ -23,6 +24,8 @@ namespace Assets.Scripts.Movement
             //Okay so i read this online - when you multiply quaternion by some vector you are rotating it. So if you have a (0, 45, 0) quaternion rotation (from euler), you can
             //multiply Vector3 by it and thus ROTATE Vector3 by 45 degrees around Y. Really cool and kinda confusing
             direction.y = 0; //cannot fly! sadge
+
+            sprinting = Input.GetKey(KeyCode.Space);
 
             MovementDirection = direction.normalized;
         }

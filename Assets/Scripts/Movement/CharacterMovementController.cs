@@ -4,16 +4,17 @@ using UnityEngine.UIElements;
 
 namespace Assets.Scripts.Movement
 {
-    [RequireComponent(typeof(CharacterController))] //cool thingy
+    [RequireComponent(typeof(CharacterController))] 
     public class CharacterMovementController : MonoBehaviour
     {
-        private static readonly float SqrEpsilon = Mathf.Epsilon * Mathf.Epsilon; //why readonly why not just const?
+        private static readonly float SqrEpsilon = Mathf.Epsilon * Mathf.Epsilon; 
 
         [SerializeField] private float speed = 1f;
         [SerializeField] private float sprintMultiplyer = 2f;
         [SerializeField] private float maxRadiansDelta = 10f;
-        public Vector3 movementDirection { get; set; } //whyyyy you need getter-setter for public field??? uh?
+        public Vector3 movementDirection { get; set; } 
         public Vector3 lookDirection { get; set; }
+        public bool sprinting { get; set; } = false;
         private CharacterController characterController;
 
         protected void Awake()
@@ -31,7 +32,7 @@ namespace Assets.Scripts.Movement
 
         private void Translate()
         {
-            var delta = movementDirection * speed * Time.deltaTime * (Input.GetKey(KeyCode.Space) ? sprintMultiplyer : 1f);
+            var delta = movementDirection * speed * Time.deltaTime * (sprinting ? sprintMultiplyer : 1f);
             characterController.Move(delta);
         }
 

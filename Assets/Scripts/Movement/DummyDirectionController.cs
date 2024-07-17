@@ -7,10 +7,12 @@ namespace Assets.Scripts.Movement
     {
 
         public Vector3 MovementDirection { get; private set; }
+        public bool sprinting { get; private set; }
 
         protected void Awake()
         {
             MovementDirection = Vector3.zero;
+            sprinting = false;
         }
     }
 }
