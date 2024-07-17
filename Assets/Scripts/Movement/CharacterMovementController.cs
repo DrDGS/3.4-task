@@ -15,6 +15,7 @@ namespace Assets.Scripts.Movement
         public Vector3 movementDirection { get; set; } 
         public Vector3 lookDirection { get; set; }
         public bool sprinting { get; set; } = false;
+        public float buffMultiplyer = 1f;
         private CharacterController characterController;
 
         protected void Awake()
@@ -32,7 +33,7 @@ namespace Assets.Scripts.Movement
 
         private void Translate()
         {
-            var delta = movementDirection * speed * Time.deltaTime * (sprinting ? sprintMultiplyer : 1f);
+            var delta = movementDirection * speed * Time.deltaTime * (sprinting ? sprintMultiplyer : 1f) * buffMultiplyer;
             characterController.Move(delta);
         }
 

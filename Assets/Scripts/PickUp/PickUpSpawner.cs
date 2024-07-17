@@ -10,10 +10,17 @@ namespace Assets.Scripts.PickUp
         [SerializeField] private PickUpItem pickUpPrefab;
         [SerializeField] private float range = 2f;
         [SerializeField] private int maxCount = 2;
-        [SerializeField] private float spawnIntervalSeconds = 10f;
-        
+        [SerializeField] private float spawnIntervalMinSeconds = 2f;
+        [SerializeField] private float spawnIntervalMaxSeconds = 5f;
+
+        private float spawnIntervalSeconds;
         private float currentSpawnTimeSeconds;
         private int currentCount;
+
+        private void Awake()
+        {
+            randomizeSpawnTime();
+        }
 
         void Update()
         {
@@ -23,6 +30,7 @@ namespace Assets.Scripts.PickUp
                 if (currentSpawnTimeSeconds > spawnIntervalSeconds)
                 {
                     currentSpawnTimeSeconds = 0f;
+                    randomizeSpawnTime();
                     currentCount++;
 
                     var randomPointInsideRange = UnityEngine.Random.insideUnitCircle * range;
@@ -39,6 +47,11 @@ namespace Assets.Scripts.PickUp
         {
             currentCount--;
             pickedUpItem.OnPickedUp -= OnItemPickedUp;
+        }
+
+        private void randomizeSpawnTime()
+        {
+            spawnIntervalSeconds = UnityEngine.Random.Range(spawnIntervalMinSeconds, spawnIntervalMaxSeconds);
         }
 
 

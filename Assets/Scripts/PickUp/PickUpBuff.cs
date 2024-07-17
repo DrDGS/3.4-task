@@ -1,0 +1,17 @@
+﻿using Assets.Scripts.Shooting;
+using System.Collections;
+using UnityEngine;
+
+namespace Assets.Scripts.PickUp
+{
+    public class PickUpBuff : PickUpItem
+    {
+        [SerializeField] public BuffPack buffPrefab;
+
+        public override void PickUp(BaseCharacter character)
+        {
+            base.PickUp(character);
+            character.GetBuff(buffPrefab);
+        }
+    }
+}

@@ -1,6 +1,7 @@
 using Assets.Scripts.Movement;
 using Assets.Scripts.PickUp;
 using Assets.Scripts.Shooting;
+using System;
 using UnityEngine;
 
 namespace Assets.Scripts
@@ -16,6 +17,9 @@ namespace Assets.Scripts
         [SerializeField] private Weapon baseWeaponPrefab;
         [SerializeField] private Transform hand;
         [SerializeField] float health = 2f;
+
+        private float buffTimeRemaining = 0f;
+        private float speedBuffMultiplyer = 1f;
 
         protected void Awake()
         {
@@ -42,6 +46,13 @@ namespace Assets.Scripts
             characterMovementController.lookDirection = lookDirection;
             characterMovementController.sprinting = sprinting;
 
+            if (buffTimeRemaining > 0f) buffTimeRemaining -= Time.deltaTime;
+            else
+            {
+                speedBuffMultiplyer = 1f;
+                characterMovementController.buffMultiplyer = speedBuffMultiplyer;
+            }
+
             if (health <= 0f)
                 Destroy(gameObject);
         }
@@ -56,7 +67,7 @@ namespace Assets.Scripts
             }
             else if (LayerUtils.isPickUp(other.gameObject))
             {
-                var pickUp = other.gameObject.GetComponent<PickUpWeapon>();
+                var pickUp = other.gameObject.GetComponent<PickUpItem>();
                 pickUp.PickUp(this);
                 Destroy(other.gameObject);
             }
@@ -65,6 +76,13 @@ namespace Assets.Scripts
         public void SetWeapon(Weapon weapon)
         {
             shootingController.SetWeapon(weapon, hand);
+        }
+
+        public void GetBuff(BuffPack buffPrefab)
+        {
+            buffTimeRemaining += buffPrefab.buffTime;
+            speedBuffMultiplyer = buffPrefab.buffTime;
+            characterMovementController.buffMultiplyer = speedBuffMultiplyer;
         }
     }
 }
