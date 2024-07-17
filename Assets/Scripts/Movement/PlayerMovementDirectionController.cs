@@ -14,7 +14,7 @@ namespace Assets.Scripts.Movement
             camera = UnityEngine.Camera.main; //best way to get the main camera
         }
 
-        void Update()
+        protected void Update()
         {
             var horizontal = Input.GetAxis("Horizontal");
             var vertical = Input.GetAxis("Vertical");

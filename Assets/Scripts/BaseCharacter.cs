@@ -1,4 +1,5 @@
 using Assets.Scripts.Movement;
+using Assets.Scripts.PickUp;
 using Assets.Scripts.Shooting;
 using UnityEngine;
 
@@ -49,9 +50,13 @@ namespace Assets.Scripts
             if (LayerUtils.isBullet(other.gameObject))
             {
                 var bullet = other.gameObject.GetComponent<Bullet>();
-
                 health -= bullet.damage;
-                
+                Destroy(other.gameObject);
+            }
+            else if (LayerUtils.isPickUp(other.gameObject))
+            {
+                var pickUp = other.gameObject.GetComponent<PickUpWeapon>();
+                shootingController.SetWeapon(pickUp.weaponPrefab, hand);
                 Destroy(other.gameObject);
             }
         }

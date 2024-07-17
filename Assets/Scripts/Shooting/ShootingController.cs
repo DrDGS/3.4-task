@@ -40,7 +40,7 @@ namespace Assets.Scripts.Shooting
 
             var position = weapon.transform.position;
             var radius = weapon.shootRadius;
-            var mask = LayerUtils.PlayerMask + LayerUtils.EnemyMask;
+            var mask = LayerUtils.CharactersMask;
 
             var size = Physics.OverlapSphereNonAlloc(position, radius, colliders, mask);
 
