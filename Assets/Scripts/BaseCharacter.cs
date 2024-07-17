@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Assets.Scripts
 {
     [RequireComponent(typeof(CharacterMovementController), typeof(ShootingController))]
-    public class BaseCharacter : MonoBehaviour
+    public abstract class BaseCharacter : MonoBehaviour
     {
 
         private CharacterMovementController characterMovementController;
@@ -27,6 +27,7 @@ namespace Assets.Scripts
         protected void Start()
         {
             shootingController.SetWeapon(baseWeaponPrefab, hand);
+            SetWeapon(baseWeaponPrefab);
         }
 
         protected void Update()
@@ -56,9 +57,14 @@ namespace Assets.Scripts
             else if (LayerUtils.isPickUp(other.gameObject))
             {
                 var pickUp = other.gameObject.GetComponent<PickUpWeapon>();
-                shootingController.SetWeapon(pickUp.weaponPrefab, hand);
+                pickUp.PickUp(this);
                 Destroy(other.gameObject);
             }
+        }
+
+        public void SetWeapon(Weapon weapon)
+        {
+            shootingController.SetWeapon(weapon, hand);
         }
     }
 }

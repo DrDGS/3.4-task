@@ -143,7 +143,7 @@ Transform:
   m_GameObject: {fileID: 4192031632449439232}
   serializedVersion: 2
   m_LocalRotation: {x: -0.5, y: 0, z: 0, w: 0.8660254}
-  m_LocalPosition: {x: 0, y: 0, z: -0.25}
+  m_LocalPosition: {x: 0, y: 1, z: -0.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -363,7 +363,7 @@ Transform:
   m_GameObject: {fileID: 6498157485960472733}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -382,7 +382,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9a1d973472753649bfc1b8082a611f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <weaponPrefab>k__BackingField: {fileID: 7200171471358328803, guid: d5d0a81329130f44fb9105432f4c2e57, type: 3}
+  weaponPrefab: {fileID: 7200171471358328803, guid: d5d0a81329130f44fb9105432f4c2e57, type: 3}
 --- !u!136 &2863810643506293280
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -405,7 +405,7 @@ CapsuleCollider:
   m_Radius: 0.6
   m_Height: 2
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!114 &6501875194257364340
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -421,3 +421,4 @@ MonoBehaviour:
   rotationSpeed: 30
   levitationIntensivity: 2
   levitationOffset: 0.5
+  centerY: 1

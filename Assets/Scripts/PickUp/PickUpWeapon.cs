@@ -4,8 +4,14 @@ using UnityEngine;
 
 namespace Assets.Scripts.PickUp
 {
-    public class PickUpWeapon : MonoBehaviour
+    public class PickUpWeapon : PickUpItem
     {
-        [field: SerializeField] public Weapon weaponPrefab { get; private set; }
+        [SerializeField] public Weapon weaponPrefab;
+
+        public override void PickUp(BaseCharacter character)
+        {
+            base.PickUp(character);
+            character.SetWeapon(weaponPrefab);
+        }
     }
 }
