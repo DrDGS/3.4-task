@@ -104,7 +104,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseWeaponPrefab: {fileID: 7200171471358328803, guid: a7644a3cf2daa244b9ba5b7ba1f75cbb, type: 3}
   hand: {fileID: 3619247620090176601}
-  health: 20
+  <maxHealth>k__BackingField: 30
 --- !u!114 &4768430441484561862
 MonoBehaviour:
   m_ObjectHideFlags: 0

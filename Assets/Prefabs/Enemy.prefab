@@ -242,7 +242,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseWeaponPrefab: {fileID: 7200171471358328803, guid: a7644a3cf2daa244b9ba5b7ba1f75cbb, type: 3}
   hand: {fileID: 4642332902459334726}
-  health: 5
+  <maxHealth>k__BackingField: 20
 --- !u!114 &2990732555813670239
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -268,6 +268,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   viewRadius: 100
+  runAtHealthToMaxHealthRatio: 0.5
 --- !u!1 &7521575242628353408
 GameObject:
   m_ObjectHideFlags: 0

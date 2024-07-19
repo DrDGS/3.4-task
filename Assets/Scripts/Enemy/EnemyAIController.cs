@@ -8,6 +8,7 @@ namespace Assets.Scripts.Enemy
     public class EnemyAIController : MonoBehaviour
     {
         [SerializeField] private float viewRadius = 100f;
+        [SerializeField] private float runAtHealthToMaxHealthRatio = 0.5f;
         private EnemyStateMachine stateMachine;
         private EnemyTarget target;
 
@@ -19,7 +20,7 @@ namespace Assets.Scripts.Enemy
 
             target = new EnemyTarget(transform, viewRadius, player);
 
-            stateMachine = new EnemyStateMachine(enemyDirectionController, navMesher, target);
+            stateMachine = new EnemyStateMachine(enemyDirectionController, navMesher, target, runAtHealthToMaxHealthRatio);
         }
 
         protected void Update()

@@ -5,14 +5,20 @@ namespace Assets.Scripts.Enemy.States
 {
     public class EnemyStateMachine : BaseStateMachine
     {
-        private const float NavMeshTurnOffDistance = 2f;
+        private const float NavMeshTurnOffDistance = 3f;
+        private float runAtHealth;
 
         public EnemyStateMachine(EnemyDirectionController enemyDirectionController, 
-            NavMesher navMesher, EnemyTarget target) 
+            NavMesher navMesher, EnemyTarget target, float runAtHealth) 
         {
             var idleState = new IdleState();
             var findWayState = new FindWayState(target, navMesher, enemyDirectionController);
             var moveForwardState = new MoveForwardState(target, enemyDirectionController);
+            var runAwayState = new RunAwayState(target, enemyDirectionController);
+
+            var enemyCharacter = enemyDirectionController.gameObject.GetComponent<BaseCharacter>();
+
+            this.runAtHealth = runAtHealth;
 
             SetInitialState(idleState);
 
@@ -23,7 +29,10 @@ namespace Assets.Scripts.Enemy.States
                         () => target.DistanceToClosestFromAgent() > NavMeshTurnOffDistance),
                     new Transition(
                         moveForwardState,
-                        () => target.DistanceToClosestFromAgent() <= NavMeshTurnOffDistance)
+                        () => target.DistanceToClosestFromAgent() <= NavMeshTurnOffDistance),
+                    new Transition(
+                        runAwayState,
+                        () => enemyCharacter.health <= enemyCharacter.maxHealth * runAtHealth)
                 }
             );
             AddState(_state: findWayState, _transitions: new List<Transition>
@@ -43,7 +52,17 @@ namespace Assets.Scripts.Enemy.States
                         () => target.Closest == null),
                     new Transition(
                         findWayState,
-                        () => target.DistanceToClosestFromAgent() > NavMeshTurnOffDistance)
+                        () => target.DistanceToClosestFromAgent() > NavMeshTurnOffDistance),
+                    new Transition(
+                        runAwayState,
+                        () => enemyCharacter.health <= enemyCharacter.maxHealth * runAtHealth)
+                }
+            );
+            AddState(_state: runAwayState, _transitions: new List<Transition>
+                {
+                    new Transition(
+                        idleState,
+                        () => target.Closest == null),
                 }
             );
         }

@@ -16,7 +16,8 @@ namespace Assets.Scripts
 
         [SerializeField] private Weapon baseWeaponPrefab;
         [SerializeField] private Transform hand;
-        [SerializeField] float health = 2f;
+        [field: SerializeField] public float maxHealth { get; private set; } = 5f;
+        public float health { get; private set; }
 
         private float buffTimeRemaining = 0f;
         private float speedBuffMultiplyer = 1f;
@@ -26,6 +27,7 @@ namespace Assets.Scripts
             characterMovementController = GetComponent<CharacterMovementController>();
             shootingController= GetComponent<ShootingController>();
             movementDirectionSource = GetComponent<IMovementDirectionSource>();
+            health = maxHealth;
         }
 
         protected void Start()

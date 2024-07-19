@@ -14,5 +14,10 @@ namespace Assets.Scripts.Enemy
             var realDirection = targetPosition - transform.position;
             MovementDirection = new Vector3(realDirection.x, 0, realDirection.z).normalized; 
         }
+
+        public void UpdateMovementDirectionTrue(Vector3 direction)
+        {
+            MovementDirection = new Vector3(direction.x, 0, direction.z).normalized;
+        }
     }
 }
