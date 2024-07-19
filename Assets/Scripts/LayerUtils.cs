@@ -20,6 +20,7 @@ namespace Assets.Scripts
         //public static readonly int PlayerMask = LayerMask.GetMask(PlayerLayerName);
         //public static readonly int EnemyMask = LayerMask.GetMask(EnemyLayerName);
         public static readonly int CharactersMask = LayerMask.GetMask(EnemyLayerName, PlayerLayerName);
+        public static readonly int PickUpsMask = LayerMask.GetMask(PickUpLayerName);
 
         public static bool isBullet(GameObject other) => other.layer == BulletLayer;
         public static bool isPickUp(GameObject other) => other.layer == PickUpLayer;
